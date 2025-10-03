@@ -1,22 +1,315 @@
-body {
-    background-color: var(--yellow);
+:root {
+      --yellow: #ffde59;
+      --pink: #ef476f;
+      --blue: #4361ee;
+      --dark: #222;
+      --light: #f9f9f9;
+      --font-heading: "Poppins", sans-serif;
+      --font-body: "Open Sans", sans-serif;
+      --tri-dark: #2741d4;   /* darker left triangle */
+      --tri-darker:  #123261;
+      --tri-mid: rgba(67,97,238,0.8);   /* in-between dark band / base */
+      --tri-light:#7aa8ff;   /* lighter right triangle */
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    header .logo img {
+      max-height: 70px;
+    }
+
+    header h1 {
+      font-family: var(--font-heading);
+      margin: 0;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--yellow);
+    }
+
+    .hero {
+      position: relative; /* needed for pseudo-elements */
+      overflow: hidden;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(rgba(39,65,212,1), rgba(18,50,97,1));
+      /* url("kids.jpg") center/cover no-repeat; */
+      color: white;
+    }
+
+    .hero h2 {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      --tri-width: 55%;      /* how far each triangle extends horizontally */
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: white;
+    }
+
+    /* --- three-triangle hero background ---
+       Left (::before) and right (::after) are full-height tall triangles
+       that reach ~75% across the hero. The center element (.tri-center)
+       is a full-width upside-down triangle whose point sits in the
+       vertical middle of the hero. Stacking: left (bottom), center (middle), right (top).
+    */
+    .hero::before {
+      /* left tall triangle (dark) */
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 75%;                 /* reaches ~75% across from the left */
+      background: var(--tri-mid);
+      /* slant down to the bottom-right of this block (point near bottom at ~75%) */
+      clip-path: polygon(0 0, 100% 100%, 0 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      /* right tall triangle (light) — sits on top to create overlap */
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 75%;                 /* reaches ~75% across from the right */
+      background: var(--tri-light);
+      /* slant down to the bottom-left of this block (point near bottom at ~25%) */
+      clip-path: polygon(100% 0, 0 100%, 100% 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* make sure hero content floats above the decorative shapes */
+    .hero > * {
+      position: relative;
+      z-index: 3;
+    }
+
+    .btn {
+      background: var(--yellow);
+      color: var(--dark);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--pink);
+      color: white;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      color: var(--pink);
+      border-left: 6px solid var(--yellow);
+      padding-left: 0.5rem;
+      margin-top: 2rem;
+    }
+
+/* Triangle pseudo-elements were accidentally nested inside the h2 rule above.
+   Move them here to top-level so the stylesheet is valid CSS. */
+.triangle-rect::before {
+  /* dark left triangle — spans full height, slanted edge runs top->bottom */
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--tri-width);
+  background: var(--tri-dark);
+  /* triangle with slanted edge from the element's top-right down to its bottom-left */
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+.triangle-rect::after {
+  /* lighter right triangle — spans full height and overlaps on top */
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: var(--tri-width);
+  background: var(--tri-light);
+  /* triangle with slanted edge from the element's top-left down to its bottom-right */
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
-.topContainer {
-    margin: 0 10%;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-around;
-    align-items: center;
-    background-color: var(--pink);
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    ul li, ol li {
+      background: white;
+      border-left: 4px solid var(--blue);
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.75rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+     .hero.hero-triangle::before { width: 50%; }
+    ul li strong {
+     .hero.hero-triangle::after  { width: 50%; }
+    }
+
+    .get-involved {
+      background: var(--yellow);
+      text-align: center;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .get-involved p {
+      margin: 0.8rem 0;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background: var(--blue);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    footer a {
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Rectangle with two overlapping bottom triangles
+   - Use on any block-level element to create the effect
+   - Left triangle (darker) sits behind, right triangle (lighter) sits on top
+   - Content is kept readable by stacking via z-index
+*/
+.triangle-rect {
+  position: relative;
+  overflow: hidden;
+  background: var(--tri-mid);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  min-height: 220px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
-.title {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 16px;
-    text-align: right;
+.triangle-rect::before {
+  /* dark left triangle */
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80%;            /* stretches ~80% across from the left */
+  height: 60%;
+  background: var(--tri-dark);
+  clip-path: polygon(0% 100%, 0% 0%, 100% 100%);
+  z-index: 0;
+  pointer-events: none;
 }
+
+.triangle-rect::after {
+  /* lighter right triangle that overlaps on top */
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 55%;            /* adjust to control overlap width */
+  height: 52%;
+  background: var(--tri-light);
+  clip-path: polygon(100% 100%, 100% 0%, 0% 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ensure content sits above the decorative triangles */
+.triangle-rect > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive tweak: reduce triangle height on small screens */
+@media (max-width: 600px) {
+  .triangle-rect { padding: 1.25rem; min-height: 160px; }
+  .triangle-rect::before { height: 45%; }
+  .triangle-rect::after  { height: 40%; width: 65%; }
+}
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      nav {
+        margin-top: 1rem;
+      }
+    }
+
+    /* Hero-specific tweaks when using triangle background */
+.hero.hero-triangle {
+  color: white;
+  background: linear-gradient(rgba(0,0,0,0.12), rgba(0,0,0,0.12));
+  padding: 3.5rem 2rem;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Make the main CTA pink (matches --pink) and stand out on white text */
+.hero.hero-triangle .btn {
+  background: var(--pink);
+  color: white;
+  box-shadow: 0 6px 18px rgba(18,50,97,0.25);
+}
+
+.hero.hero-triangle .btn:hover {
+  background: #d83a64; /* slightly darker pink on hover */
+}
+
+/* Slightly adjust triangle sizes for hero so they sit nicely */
+.hero.hero-triangle::before { height: 48%; width: 80%; }
+.hero.hero-triangle::after  { height: 44%; width: 54%; }
