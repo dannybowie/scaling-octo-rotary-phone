@@ -28,6 +28,7 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
+      position: relative; /* for absolute-centering the h1 */
     }
 
     header .logo img {
@@ -40,6 +41,23 @@
       font-size: 1.8rem;
       letter-spacing: 1px;
     }
+
+/* prevent logo and nav from stretching so the title can be centered */
+.logo, header nav {
+  flex: 0 0 auto;
+}
+
+/* center the header title visually on wider screens without changing DOM order */
+@media (min-width: 769px) {
+  header h1 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    pointer-events: none; /* allow clicks to reach nav/logo if they overlap */
+  }
+}
 
     nav a {
       color: white;
