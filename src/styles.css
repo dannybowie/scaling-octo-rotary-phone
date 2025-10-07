@@ -1,7 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
 :root {
-    --yellow: #ffde59; /* yellow */
-    --pink: #ef476f;
-    --blue: #4361ee;
-}
-
+      --yellow: #ffde59;
+      --pink: #ef476f;
+      --blue: #4361ee;
+      --dark: #222;
+      --light: #f9f9f9;
+      --font-heading: "Poppins", sans-serif;
+      --font-body: "Open Sans", sans-serif;
+      --tri-dark: #2741d4;   /* darker left triangle */
+      --tri-darker:  #123261;
+      --tri-mid: rgba(67,97,238,0.8);   /* in-between dark band / base */
+      --tri-light:#7aa8ff;   /* lighter right triangle */
+    }

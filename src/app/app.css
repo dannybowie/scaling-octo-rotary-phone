@@ -1,16 +1,4 @@
-:root {
-      --yellow: #ffde59;
-      --pink: #ef476f;
-      --blue: #4361ee;
-      --dark: #222;
-      --light: #f9f9f9;
-      --font-heading: "Poppins", sans-serif;
-      --font-body: "Open Sans", sans-serif;
-      --tri-dark: #2741d4;   /* darker left triangle */
-      --tri-darker:  #123261;
-      --tri-mid: rgba(67,97,238,0.8);   /* in-between dark band / base */
-      --tri-light:#7aa8ff;   /* lighter right triangle */
-    }
+
 
     body {
       margin: 0;
@@ -156,6 +144,12 @@
       color: white;
     }
 
+/* Remove the left accent bar for hero headings only (keep it for other sections) */
+.hero h2 {
+  border-left: none;
+  padding-left: 0;
+}
+
     .hero p {
       font-size: 1.2rem;
       max-width: 700px;
@@ -217,6 +211,37 @@
     }
 
     .btn:hover {
+      background: var(--pink);
+      color: white;
+    }
+
+    .btn-donate {
+      background: var(--pink);
+      color: var(--dark);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .btn-donate:hover {
+      background: var(--pink);
+      color: white;
+    }
+    .btn-site {
+      background: var(--yellow);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .btn-site:hover {
       background: var(--pink);
       color: white;
     }
@@ -293,6 +318,20 @@
     }
 
     .get-involved p {
+      margin: 0.8rem 0;
+      font-size: 1.1rem;
+    }
+
+    .about-section {
+      color: white;
+      background: var(--pink);
+      text-align: center;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .about-section p {
       margin: 0.8rem 0;
       font-size: 1.1rem;
     }
