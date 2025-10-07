@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "nonprofit": {
+    "scaling-octo-rotary-phone": {
       "projectType": "application",
       "schematics": {},
       "root": "",
