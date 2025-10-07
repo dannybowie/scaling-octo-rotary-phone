@@ -44,6 +44,14 @@
   left: 50%;
 }
 
+.about-section h2 {
+  color: var(--yellow);
+  border-left: none;
+  padding-left: 0;
+  margin-top: 0;
+
+}
+
 /* Container to center the image and provide the blue starburst behind it */
 .bible-study-image-container {
   display: flex;
@@ -78,6 +86,7 @@
   /* subtle glow and slight soften on edges */
   filter: drop-shadow(0 6px 18px rgba(67,97,238,0.12));
 }
+
 
 .bible-study-image-container::after {
   /* inner ring to create contrast between the cog and the image */
@@ -227,12 +236,12 @@
     }
 
     .btn-donate:hover {
-      background: var(--pink);
+      background: var(--blue);
       color: white;
     }
     .btn-site {
       background: var(--yellow);
-      color: white;
+      color: black;
       padding: 0.8rem 1.5rem;
       border-radius: 8px;
       font-weight: bold;
@@ -324,7 +333,7 @@
 
     .about-section {
       color: white;
-      background: var(--pink);
+      background: var(--tri-dark);
       text-align: center;
       padding: 2rem;
       border-radius: 12px;
