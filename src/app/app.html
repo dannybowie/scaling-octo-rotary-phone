@@ -5,10 +5,10 @@
     <h1>Prodigals United</h1>
     <nav>
       <a href="#vision">Vision</a>
-      <a href="#about">About</a>
       <a href="#mission">Mission</a>
       <a href="#bible-study">Bible Study</a>
       <a href="#involved">Get Involved</a>
+      <a href="#about">About</a>
     </nav>
   </header>
 
@@ -31,7 +31,7 @@
   <section id="bible-study">
     <h2>Bible Study for Teen Girls</h2>
     <div class="bible-study-image-container">
-      <img src="biblestudy-1.png" alt="bible study information" class="bible-study-image">
+      <img src="biblestudy-1.png" alt="bible study information" class="bible-study-image" (click)="openModal($event)">
     </div>
 
   </section>
@@ -57,3 +57,12 @@
     <p>© 2025 Prodigals United | All Rights Reserved</p>
     <p><a href="#donate">Support Our Mission</a></p>
   </footer>
+
+  <!-- Fullscreen image modal for bible study image (Angular bindings) -->
+  <div id="image-modal" class="image-modal" [class.open]="modalOpen" [attr.aria-hidden]="!modalOpen">
+    <div class="image-modal-backdrop" (click)="closeModal()"></div>
+    <div class="image-modal-content" role="dialog" aria-modal="true">
+      <button class="image-modal-close" aria-label="Close" (click)="closeModal()">×</button>
+      <img id="image-modal-img" [src]="modalSrc" [alt]="modalAlt" />
+    </div>
+  </div>
