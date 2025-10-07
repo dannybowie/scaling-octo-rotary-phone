@@ -47,6 +47,73 @@
   flex: 0 0 auto;
 }
 
+.bible-study-image {
+  max-width: 15%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 1rem 0;
+  left: 50%;
+}
+
+/* Container to center the image and provide the blue starburst behind it */
+.bible-study-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin: 40px 0;
+}
+.bible-study-image-container::before {
+  /* cog/sprocket spikes using the project's --blue color */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(180px, 40vmin, 420px);
+  height: clamp(180px, 40vmin, 420px);
+  /*
+    Approach:
+    - repeating-conic-gradient creates the spike pattern around the circle
+    - a radial-gradient placed on top covers the center so spikes only show around the rim
+    - use the css variable --blue so it matches the site's blue
+  */
+  background:
+    /* center disc (top layer) */
+    radial-gradient(circle at center, var(--blue) 0% 62%, transparent 62% 100%),
+    /* teeth/spikes (bottom layer) */
+    repeating-conic-gradient(from 0deg, var(--blue) 0deg 10deg, rgba(0,0,0,0) 10deg 20deg);
+  border-radius: 50%;
+  z-index: 0;
+  /* subtle glow and slight soften on edges */
+  filter: drop-shadow(0 6px 18px rgba(67,97,238,0.12));
+}
+
+.bible-study-image-container::after {
+  /* inner ring to create contrast between the cog and the image */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(clamp(180px, 40vmin, 420px) * 0.62);
+  height: calc(clamp(180px, 40vmin, 420px) * 0.62);
+  background: white;
+  border-radius: 50%;
+  z-index: 0; /* sits above ::before but below the image (image is z-index:1) */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) inset;
+}
+.bible-study-image-container .bible-study-image {
+  position: relative;
+  z-index: 1;
+  max-width: clamp(140px, 25vmin, 260px);
+  height: auto;
+  box-shadow: 0 6px 24px rgba(33, 150, 243, 0.18);
+  border-radius: 12px;
+}
+
 /* center the header title visually on wider screens without changing DOM order */
 @media (min-width: 769px) {
   header h1 {
@@ -166,6 +233,11 @@
       border-left: 6px solid var(--yellow);
       padding-left: 0.5rem;
       margin-top: 2rem;
+    }
+
+    .hero h2 { 
+      border-left: none !important;
+      color: var(--yellow);
     }
 
 /* Triangle pseudo-elements were accidentally nested inside the h2 rule above.
