@@ -6,8 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:nonprofit": "node dist/scaling-octo-rotary-phone/server/server.mjs"
+    "deploy": "ng build --configuration production,ghpages && npx gh-pages -d dist/scaling-octo-rotary-phone --cname prodigalsunited.org",
+    "test": "ng test"
   },
   "prettier": {
     "overrides": [
