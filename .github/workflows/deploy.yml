@@ -31,13 +31,16 @@ jobs:
         run: npm ci
 
       - name: Build Angular App
-        run: npm run build -- --configuration production --base-href /${{ github.event.repository.name }}/
+        run: npm run build -- --configuration production --base-href /
 
       - name: Add .nojekyll file
-        run: touch ./dist/scaling-octo-rotary-phone/browser/.nojekyll
+        run: touch ./dist/scaling-octo-rotary-phone/.nojekyll
+
+      - name: Create CNAME
+        run: echo "prodigalsunited.org" > ./dist/scaling-octo-rotary-phone/CNAME
 
       - name: Copy index.html to 404.html
-        run: cp ./dist/scaling-octo-rotary-phone/browser/index.html ./dist/scaling-octo-rotary-phone/browser/404.html
+        run: cp ./dist/scaling-octo-rotary-phone/index.html ./dist/scaling-octo-rotary-phone/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -45,7 +48,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist/scaling-octo-rotary-phone/browser'
+          path: './dist/scaling-octo-rotary-phone'
 
   deploy:
     environment:
