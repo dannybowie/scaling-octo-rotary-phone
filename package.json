@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "deploy": "ng build --configuration production,ghpages && npx gh-pages -d dist/scaling-octo-rotary-phone --cname prodigalsunited.org",
+    "deploy": "ng build --configuration production,ghpages && npx gh-pages -d dist/scaling-octo-rotary-phone/browser --cname prodigalsunited.org",
     "test": "ng test"
   },
   "prettier": {
