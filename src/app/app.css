@@ -1,582 +1,258 @@
-
-
-    body {
-      margin: 0;
-      font-family: var(--font-body);
-      background: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-    }
-
-    header {
-      background: var(--blue);
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      position: relative; /* for absolute-centering the h1 */
-    }
-
-    header .logo img {
-      max-height: 70px;
-    }
-
-    header h1 {
-      font-family: var(--font-heading);
-      margin: 0;
-      font-size: 1.8rem;
-      letter-spacing: 1px;
-    }
-
-/* prevent logo and nav from stretching so the title can be centered */
-.logo, header nav {
-  flex: 0 0 auto;
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--light);
+  color: var(--dark);
+  line-height: 1.6;
 }
 
-.bible-study-image {
-  max-width: 15%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  margin: 1rem 0;
-  display: grid;
-  justify-content: center;
-}
-
-.about-section h2 {
-  color: var(--yellow);
-  border-left: none;
-  padding-left: 0;
-  margin-top: 0;
-
-}
-
-/* Container for the bible study image with cog/sprocket background */
-.bible-study-image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  margin: 40px 0;
-  /* give a minimum room so the cog is vertically centered in its section */
-  min-height: clamp(220px, 30vmin, 380px);
-}
-
-.bible-study-image-container::before {
-  /* cog/sprocket spikes using the project's --blue color */
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: clamp(180px, 40vmin, 420px);
-  height: clamp(180px, 40vmin, 420px);
-  /* center disc on top, repeating-conic-gradient for teeth around the rim */
-  background:
-    radial-gradient(circle at center, var(--blue) 0% 62%, transparent 62% 100%),
-    repeating-conic-gradient(from 0deg, var(--blue) 0deg 8deg, rgba(0,0,0,0) 8deg 16deg);
-  border-radius: 50%;
-  z-index: 0;
-  filter: drop-shadow(0 6px 18px rgba(67,97,238,0.12));
-}
-
-.bible-study-image-container::after {
-  /* inner white ring to separate the cog from the image */
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(clamp(180px, 40vmin, 420px) * 0.62);
-  height: calc(clamp(180px, 40vmin, 420px) * 0.62);
-  background: white;
-  border-radius: 50%;
-  z-index: 1; /* sits above ::before but below the image (image is z-index:2) */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08) inset;
-}
-
-.bible-study-image-container .bible-study-image {
-  position: relative;
-  z-index: 2;
-  max-width: clamp(140px, 25vmin, 260px);
-  height: auto;
-  box-shadow: 0 6px 24px rgba(33, 150, 243, 0.18);
-  border-radius: 12px;
-  cursor: pointer;
-  border: 4px solid rgba(255,255,255,0.95);
-}
-
-/* Fullscreen image modal styles */
-.image-modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-.image-modal.open {
-  display: flex;
-}
-.image-modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-}
-.image-modal-content {
-  position: relative;
-  max-width: 95vw;
-  max-height: 95vh;
-  padding: 1rem;
+header {
+  background: var(--dark);
+  color: white;
+  padding: 1rem 2rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 1;
+  justify-content: space-between;
+  position: relative;
+  z-index: 100;
 }
-.image-modal-content img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 8px;
-  box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+
+header h1 {
+  font-family: var(--font-heading);
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  z-index: 101;
 }
-.image-modal-close {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(255,255,255,0.9);
+
+/* Mobile Menu Button (Hamburger) */
+.menu-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
   border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-size: 22px;
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-  z-index: 2;
-}
-.image-modal-close:hover { transform: scale(1.05); }
-
-/* Mobile-friendly tweaks */
-@media (max-width: 600px) {
-  /* Bible study cog and image sizing */
-  .bible-study-image-container {
-    margin: 20px 0;
-    min-height: 180px;
-    padding: 8px 0;
-  }
-  .bible-study-image-container::before {
-    width: clamp(130px, 60vmin, 300px);
-    height: clamp(130px, 60vmin, 300px);
-    background:
-      radial-gradient(circle at center, var(--blue) 0% 62%, transparent 62% 100%),
-      repeating-conic-gradient(from 0deg, var(--blue) 0deg 12deg, rgba(0,0,0,0) 12deg 24deg);
-  }
-  .bible-study-image-container::after {
-    width: calc(clamp(130px, 60vmin, 300px) * 0.62);
-    height: calc(clamp(130px, 60vmin, 300px) * 0.62);
-  }
-  .bible-study-image-container .bible-study-image {
-    max-width: clamp(160px, 34vmin, 220px);
-  }
-
-  /* Header & nav stacking for small screens */
-  header {
-    padding: 0.75rem 1rem;
-    align-items: center;
-  }
-  header .logo img { max-height: 56px; }
-  header h1 { font-size: 1.15rem; margin: 0.5rem 0 0; }
-  nav {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0.5rem;
-    gap: 0.25rem;
-  }
-  nav a {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 0.5rem 0;
-    font-size: 1rem;
-  }
-
-  /* Hero trims and readable text sizes */
-  .hero { padding: 2.5rem 1rem; }
-  .hero h2 { font-size: 1.4rem; }
-  .hero p { font-size: 1rem; max-width: 92%; }
-
-  /* Buttons become full-width for easier tapping */
-  .btn, .btn-site, .btn-donate {
-    display: block;
-    width: 100%;
-    max-width: 360px;
-    margin: 0.75rem auto;
-    padding: 0.85rem 1rem;
-    font-size: 1rem;
-  }
-
-  /* Sections and headings */
-  section { padding: 0 1rem; margin: 1.25rem auto; }
-  h2 { font-size: 1.05rem; }
-
-  /* Modal adjustments for touch devices */
-  .image-modal {
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 6vh;
-  }
-  .image-modal-content { max-width: 98vw; max-height: 84vh; padding: 0.5rem; }
-  .image-modal-content img { border-radius: 6px; }
-  .image-modal-close { width: 44px; height: 44px; top: 12px; right: 12px; }
-
-  /* Increase the tap target of the image slightly */
-  .bible-study-image { padding: 6px; }
+  z-index: 101;
 }
 
-/* center the header title visually on wider screens without changing DOM order */
-@media (min-width: 769px) {
-  header h1 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    pointer-events: none; /* allow clicks to reach nav/logo if they overlap */
-  }
+.menu-btn span {
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s linear;
 }
 
-    nav a {
-      color: white;
-      margin-left: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
-
-    nav a:hover {
-      color: var(--yellow);
-    }
-
-    .hero {
-      position: relative; /* needed for pseudo-elements */
-      overflow: hidden;
-      text-align: center;
-      padding: 4rem 2rem;
-      background: linear-gradient(rgba(39,65,212,1), rgba(18,50,97,1));
-      /* url("kids.jpg") center/cover no-repeat; */
-      color: white;
-    }
-
-    .hero h2 {
-      font-family: var(--font-heading);
-      font-size: 2.2rem;
-      --tri-width: 55%;      /* how far each triangle extends horizontally */
-      margin-bottom: 1rem;
-      color: white;
-    }
-
-/* Remove the left accent bar for hero headings only (keep it for other sections) */
-.hero h2 {
-  border-left: none;
-  padding-left: 0;
+.menu-btn.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
 }
 
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      color: white;
-    }
+.menu-btn.open span:nth-child(2) {
+  opacity: 0;
+}
 
-    /* --- three-triangle hero background ---
-       Left (::before) and right (::after) are full-height tall triangles
-       that reach ~75% across the hero. The center element (.tri-center)
-       is a full-width upside-down triangle whose point sits in the
-       vertical middle of the hero. Stacking: left (bottom), center (middle), right (top).
-    */
-    .hero::before {
-      /* left tall triangle (dark) */
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 75%;                 /* reaches ~75% across from the left */
-      background: var(--tri-mid);
-      /* slant down to the bottom-right of this block (point near bottom at ~75%) */
-      clip-path: polygon(0 0, 100% 100%, 0 100%);
-      z-index: 0;
-      pointer-events: none;
-    }
+.menu-btn.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
-    .hero::after {
-      /* right tall triangle (light) — sits on top to create overlap */
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      width: 75%;                 /* reaches ~75% across from the right */
-      background: var(--tri-light);
-      /* slant down to the bottom-left of this block (point near bottom at ~25%) */
-      clip-path: polygon(100% 0, 0 100%, 100% 100%);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    /* make sure hero content floats above the decorative shapes */
-    .hero > * {
-      position: relative;
-      z-index: 3;
-    }
-
-    .btn {
-      background: var(--yellow);
-      color: var(--dark);
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s;
-    }
-
-    .btn:hover {
-      background: var(--pink);
-      color: white;
-    }
-
-    .btn-donate {
-      background: var(--pink);
-      color: var(--dark);
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s;
-    }
-
-    .btn-donate:hover {
-      background: var(--blue);
-      color: white;
-    }
-    .btn-site {
-      background: var(--yellow);
-      color: black;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s;
-    }
-
-    .btn-site:hover {
-      background: var(--pink);
-      color: white;
-    }
-
-    section {
-      max-width: 900px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-    }
-
-    h2 {
-      font-family: var(--font-heading);
-      color: var(--pink);
-      border-left: 6px solid var(--yellow);
-      padding-left: 0.5rem;
-      margin-top: 2rem;
-    }
-
-    .hero h2 { 
-      border-left: none !important;
-      color: var(--yellow);
-    }
-
-/* Triangle pseudo-elements were accidentally nested inside the h2 rule above.
-   Move them here to top-level so the stylesheet is valid CSS. */
-.triangle-rect::before {
-  /* dark left triangle — spans full height, slanted edge runs top->bottom */
-  content: "";
-  position: absolute;
+/* Mobile Navigation Drawer */
+nav {
+  position: fixed;
   top: 0;
-  bottom: 0;
-  left: 0;
-  width: var(--tri-width);
-  background: var(--tri-dark);
-  /* triangle with slanted edge from the element's top-right down to its bottom-left */
-  clip-path: polygon(0 0, 100% 0, 0 100%);
-  z-index: 0;
-  pointer-events: none;
-}
-.triangle-rect::after {
-  /* lighter right triangle — spans full height and overlaps on top */
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
   right: 0;
-  width: var(--tri-width);
-  background: var(--tri-light);
-  /* triangle with slanted edge from the element's top-left down to its bottom-right */
-  clip-path: polygon(100% 0, 0 0, 100% 100%);
-  z-index: 1;
-  pointer-events: none;
+  height: 100vh;
+  width: 250px;
+  background: var(--dark);
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
 }
 
-    ul li, ol li {
-      background: white;
-      border-left: 4px solid var(--blue);
-      padding: 0.75rem 1rem;
-      margin-bottom: 0.75rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-     .hero.hero-triangle::before { width: 50%; }
-    ul li strong {
-     .hero.hero-triangle::after  { width: 50%; }
-    }
+nav.open {
+  transform: translateX(0);
+}
 
-    .get-involved {
-      background: var(--yellow);
-      text-align: center;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
 
-    .get-involved p {
-      margin: 0.8rem 0;
-      font-size: 1.1rem;
-    }
+nav a:hover {
+  text-decoration: underline;
+}
 
-    .about-section {
-      color: white;
-      background: var(--tri-dark);
-      text-align: center;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .about-section p {
-      margin: 0.8rem 0;
-      font-size: 1.1rem;
-    }
-
-    footer {
-      background: var(--blue);
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
-    footer a {
-      color: var(--yellow);
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    /* Rectangle with two overlapping bottom triangles
-   - Use on any block-level element to create the effect
-   - Left triangle (darker) sits behind, right triangle (lighter) sits on top
-   - Content is kept readable by stacking via z-index
-*/
-.triangle-rect {
-  position: relative;
+.hero {
+  position: relative; /* Establishes a positioning context for the overlay and text */
+  width: 100%;
+  min-height: 450px; /* Gives the hero section some height */
+  max-height: 1000px;
   overflow: hidden;
-  background: var(--tri-mid);
-  color: white;
-  padding: 2rem;
-  border-radius: 12px;
-  min-height: 220px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
-.triangle-rect::before {
-  /* dark left triangle */
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 80%;            /* stretches ~80% across from the left */
-  height: 60%;
-  background: var(--tri-dark);
-  clip-path: polygon(0% 100%, 0% 0%, 100% 100%);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.triangle-rect::after {
-  /* lighter right triangle that overlaps on top */
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 55%;            /* adjust to control overlap width */
-  height: 52%;
-  background: var(--tri-light);
-  clip-path: polygon(100% 100%, 100% 0%, 0% 100%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* ensure content sits above the decorative triangles */
-.triangle-rect > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* Responsive tweak: reduce triangle height on small screens */
-@media (max-width: 600px) {
-  .triangle-rect { padding: 1.25rem; min-height: 160px; }
-  .triangle-rect::before { height: 45%; }
-  .triangle-rect::after  { height: 40%; width: 65%; }
-}
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-      nav {
-        margin-top: 1rem;
-      }
-    }
-
-    /* Hero-specific tweaks when using triangle background */
-.hero.hero-triangle {
-  color: white;
-  background: linear-gradient(rgba(0,0,0,0.12), rgba(0,0,0,0.12));
-  padding: 3.5rem 2rem;
-  min-height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  color: white; /* Text color will be white to show up on the dark image */
+  box-sizing: border-box; /* Ensures padding is included in the width/height */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 50px), 50% 100%, 0 calc(100% - 50px));
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
 }
 
-/* Make the main CTA pink (matches --pink) and stand out on white text */
-.hero.hero-triangle .btn {
-  background: var(--pink);
+.hero h2 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Places this div and its contents behind the hero text */
+}
+
+.hero-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(45, 40, 20, 0.80); /* Less intense goldish overlay */
+}
+
+img.hero-image {
+  filter: grayscale(100%) blur(3px);
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the container without distortion */
+}
+
+.logo {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+  z-index: 1; /* Ensures logo is above the overlay */
+}
+
+section {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.text-content {
+  flex: 1;
+}
+
+.image-content {
+  flex: 1;
+  background-color: #eee; /* Placeholder color */
+  min-height: 300px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-weight: bold;
+}
+
+
+
+.btn-register {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  background-color: black;
   color: white;
-  box-shadow: 0 6px 18px rgba(18,50,97,0.25);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  z-index: 1000;
+  border-radius: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+  cursor: pointer;
 }
 
-.hero.hero-triangle .btn:hover {
-  background: #d83a64; /* slightly darker pink on hover */
+/* Desktop Styles */
+@media (min-width: 768px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero {
+    min-height: 600px;
+    max-height: 1000px;
+  }
+
+  .hero h2 {
+    margin-top: 1rem;
+    font-size: 2.5rem;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  nav {
+    position: static;
+    height: auto;
+    width: auto;
+    background: transparent;
+    padding-top: 0;
+    flex-direction: row;
+    transform: none;
+    box-shadow: none;
+  }
+
+  nav a {
+    margin-left: 1.5rem;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  section {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  section:nth-of-type(even) {
+    flex-direction: row-reverse;
+  }
+
+  .btn-register {
+    bottom: 2rem;
+    left: 2rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 1.2rem;
+  }
 }
 
-/* Slightly adjust triangle sizes for hero so they sit nicely */
-.hero.hero-triangle::before { height: 48%; width: 80%; }
-.hero.hero-triangle::after  { height: 44%; width: 54%; }
+@media (min-width: 1200px) {
+  .hero {
+    min-height: 800px;
+    max-height: 1000px;
+  }
+
+  .hero h2 {
+    margin-top: 1rem;
+    font-size: 3rem;
+  }
+}

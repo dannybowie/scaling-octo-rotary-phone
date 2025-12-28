@@ -1,68 +1,104 @@
+<!--navigation -->
+<header>
 
+  <h1>Prodigals United</h1>
 
-  <header>
-    <div class="logo"><img src="logo.png" alt="Prodigals United Logo"></div>
-    <h1>Prodigals United</h1>
-    <nav>
-      <a href="#vision">Vision</a>
-      <a href="#mission">Mission</a>
-      <a href="#bible-study">Bible Study</a>
-      <a href="#involved">Get Involved</a>
-      <a href="#about">About</a>
-    </nav>
-  </header>
+    <!-- Hamburger Button -->
+  <button class="menu-btn" [class.open]="isMenuOpen" (click)="toggleMenu()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
-  <div class="hero">
-    <h2>Rooting Teen Girls in God's Word</h2>
-    <p>Together we plant seeds of faith, equipping children and families to grow and thrive in Christ's love.</p>
-    <a href="#involved" class="btn">Get Involved</a>
+  <!-- Navigation Menu -->
+  <nav [class.open]="isMenuOpen">
+    <a href="#vision" (click)="closeMenu()">Vision</a>
+    <a href="#mission" (click)="closeMenu()">Mission</a>
+    <a href="#bible-study" (click)="closeMenu()">Bible Study</a>
+    <a href="#involved" (click)="closeMenu()">Get Involved</a>
+    <a href="#about" (click)="closeMenu()">About</a>
+  </nav>
+</header>
+
+<!--hero section -->
+<div class="hero">
+  <div class="hero-image">
+    <img class="hero-image" src="heroImage.jpeg" alt="picture of mother and child">
   </div>
+  <img class="logo" src="logoDark.png" alt="hero logoo">
+  <h2>Rooting Teen Girls in God's Word</h2>
+  <p>Together we plant seeds of faith, equipping children and families to grow and thrive in Christ's love.</p>
 
-  <section id="vision">
+</div>
+<!-- static register button-->
+<div class="register-button">
+ <button class="btn-register" disabled>Register</button>
+ </div>
+<!--vision section -->
+<section id="vision">
+  <div class="text-content">
     <h2>Vision</h2>
-    <p>Led by the good Shepherd we surrender ourselves to produce many seeds of wheat throughout communities by rooting young adults in God's word and equipping them with how to reset to remain in Jesus' love.</p>
-  </section>
-
-  <section id="mission">
+    <p>Led by the good Shepherd we surrender ourselves to produce many seeds of wheat throughout communities by rooting
+      young adults in God's word and equipping them with how to reset to remain in Jesus' love.</p>
+  </div>
+  <div class="image-content">
+    <span>Image Placeholder</span>
+  </div>
+</section>
+<!--mission section -->
+<section id="mission">
+  <div class="text-content">
     <h2>Mission</h2>
-    <p>Guided by the good Shepherd, we partner with families and communities to plant the seeds of faith in young hearts - rooting young adults in God's Word, teaching them how to remain in Jesus' love, and equipping them to grow and thrive as disciples who multiply His light in the world.</p>
-  </section>
+    <p>Guided by the good Shepherd, we partner with families and communities to plant the seeds of faith in young hearts -
+      rooting young adults in God's Word, teaching them how to remain in Jesus' love, and equipping them to grow and
+      thrive as disciples who multiply His light in the world.</p>
+  </div>
+  <div class="image-content">
+    <span>Image Placeholder</span>
+  </div>
+</section>
 
-  <section id="bible-study">
-    <h2>Bible Study for Teen Girls</h2>
-    <div class="bible-study-image-container">
-      <img src="biblestudy-1.png" alt="bible study information" class="bible-study-image" (click)="openModal($event)">
-    </div>
-
-  </section>
-  
-  <section id="involved" class="get-involved">
+<section id="bible-study">
+  <div class="text-content">
+    <h2>Bible Study</h2>
+    <p>Coming Soon...</p>
+  </div>
+  <div class="image-content">
+    <span>Image Placeholder</span>
+  </div>
+</section>
+<!--get involved section -->
+<section id="involved" class="get-involved">
+  <div class="text-content">
     <h2>Get Involved</h2>
-    <p>Join us in making a difference! Whether through volunteering, donating, or participating in our events, your support is crucial to our mission.</p>    
+    <p>Join us in making a difference! Whether through volunteering, donating, or participating in our events, your
+      support is crucial to our mission.</p>
     <p>Contact us at <a href="mailto:theprodigalsunited@gmail.com">theprodigalsunited@gmail.com</a></p>
     <p>Follow us on social media for updates and stories of impact.</p>
     <p>Facebook | Twitter | Instagram | LinkedIn</p>
     <p>Together, we can create a brighter future for all.</p>
     <a href="#donate" class="btn-donate">Donate Now (Coming Soon)</a>
-  </section>
-
-  <section id="about" class="about-section">
+  </div>
+  <div class="image-content">
+    <span>Image Placeholder</span>
+  </div>
+</section>
+<!--about section -->
+<section id="about" class="about-section">
+  <div class="text-content">
     <h2>About Us</h2>
-    <p>Prodigals United partners with families and communities to support the spiritual and personal growth of young people through mentorship, programs, and outreach. We focus on creating safe spaces for learning, faith, and service.</p>
+    <p>Prodigals United partners with families and communities to support the spiritual and personal growth of young
+      people through mentorship, programs, and outreach. We focus on creating safe spaces for learning, faith, and
+      service.</p>
     <!-- Replace the href below with your other website's URL -->
     <a href="https://bebebowie.com" class="btn-site" target="_blank" rel="noopener noreferrer">BeBe Bowie</a>
-  </section>
-
-  <footer>
-    <p>© 2025 Prodigals United | All Rights Reserved</p>
-    <p><a href="#donate">Support Our Mission</a></p>
-  </footer>
-
-  <!-- Fullscreen image modal for bible study image (Angular bindings) -->
-  <div id="image-modal" class="image-modal" [class.open]="modalOpen" [attr.aria-hidden]="!modalOpen">
-    <div class="image-modal-backdrop" (click)="closeModal()"></div>
-    <div class="image-modal-content" role="dialog" aria-modal="true">
-      <button class="image-modal-close" aria-label="Close" (click)="closeModal()">×</button>
-      <img id="image-modal-img" [src]="modalSrc" [alt]="modalAlt" />
-    </div>
   </div>
+  <div class="image-content">
+    <span>Image Placeholder</span>
+  </div>
+</section>
+<!--footer section -->
+<footer>
+  <p>© 2025 Prodigals United | All Rights Reserved</p>
+  <p><a href="#donate">Support Our Mission</a></p>
+</footer>
