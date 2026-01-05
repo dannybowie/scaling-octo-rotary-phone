@@ -23,6 +23,8 @@ header h1 {
   font-size: 1.5rem;
   letter-spacing: 1px;
   z-index: 101;
+  color: white !important;
+  text-decoration: none !important;
 }
 
 /* Mobile Menu Button (Hamburger) */
@@ -71,8 +73,15 @@ nav {
   flex-direction: column;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
-  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
 }
+
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 
 nav.open {
   transform: translateX(0);
@@ -83,128 +92,18 @@ nav a {
   text-decoration: none;
   padding: 1rem 2rem;
   font-weight: bold;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 nav a:hover {
   text-decoration: underline;
 }
 
-.hero {
-  position: relative; /* Establishes a positioning context for the overlay and text */
-  width: 100%;
-  min-height: 450px; /* Gives the hero section some height */
-  max-height: 1000px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  text-align: center;
-  color: white; /* Text color will be white to show up on the dark image */
-  box-sizing: border-box; /* Ensures padding is included in the width/height */
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 50px), 50% 100%, 0 calc(100% - 50px));
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
-}
-
-.hero h2 {
-  margin-top: 1rem;
-  font-size: 1.5rem;
-}
-
-.hero-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Places this div and its contents behind the hero text */
-}
-
-.hero-image::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(45, 40, 20, 0.80); /* Less intense goldish overlay */
-}
-
-img.hero-image {
-  filter: grayscale(100%) blur(3px);
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures image covers the container without distortion */
-}
-
-.logo {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  padding-top: 2rem;
-  margin-bottom: 2rem;
-  z-index: 1; /* Ensures logo is above the overlay */
-}
-
-section {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.text-content {
-  flex: 1;
-}
-
-.image-content {
-  flex: 1;
-  background-color: #eee; /* Placeholder color */
-  min-height: 300px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-  font-weight: bold;
-}
-
-
-
-.btn-register {
-  position: fixed;
-  bottom: 1rem;
-  left: 1rem;
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  z-index: 1000;
-  border-radius: 200px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
-  cursor: pointer;
-}
-
 /* Desktop Styles */
 @media (min-width: 768px) {
   header h1 {
     font-size: 1.8rem;
-  }
 
-  .hero {
-    min-height: 600px;
-    max-height: 1000px;
-  }
-
-  .hero h2 {
-    margin-top: 1rem;
-    font-size: 2.5rem;
   }
 
   .menu-btn {
@@ -226,33 +125,5 @@ section {
     margin-left: 1.5rem;
     padding: 0;
     border-bottom: none;
-  }
-
-  section {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  section:nth-of-type(even) {
-    flex-direction: row-reverse;
-  }
-
-  .btn-register {
-    bottom: 2rem;
-    left: 2rem;
-    padding: 0.75rem 1.75rem;
-    font-size: 1.2rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .hero {
-    min-height: 800px;
-    max-height: 1000px;
-  }
-
-  .hero h2 {
-    margin-top: 1rem;
-    font-size: 3rem;
   }
 }
