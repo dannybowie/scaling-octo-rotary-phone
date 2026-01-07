@@ -1,7 +1,7 @@
 <!--navigation -->
 <header>
 
-  <h1><a routerLink="/" class="logo-link">Prodigals United</a></h1>
+  <h1><a routerLink="/" class="logo-link">The Prodigals United</a></h1>
 
     <!-- Hamburger Button -->
   <button class="menu-btn" [class.open]="isMenuOpen" (click)="toggleMenu()" aria-label="Toggle menu">
@@ -14,9 +14,14 @@
   <nav [class.open]="isMenuOpen">
     <a routerLink="/" fragment="vision" (click)="closeMenu()">Vision</a>
     <a routerLink="/" fragment="mission" (click)="closeMenu()">Mission</a>
-    <a routerLink="/" fragment="bible-study" (click)="closeMenu()">Bible Study</a>
     <a routerLink="/" fragment="involved" (click)="closeMenu()">Get Involved</a>
     <a routerLink="/" fragment="about" (click)="closeMenu()">About</a>
   </nav>
 </header>
 <router-outlet></router-outlet>
+<!--footer section -->
+<footer>
+  <p>© 2025 Prodigals United | All Rights Reserved</p>
+  <p>Contact us: <a href="mailto:theprodigalsunited@gmail.com">theprodigalsunited@gmail.com</a> | <a href="#donate">Support Our Mission</a></p>
+  <p></p>
+</footer>

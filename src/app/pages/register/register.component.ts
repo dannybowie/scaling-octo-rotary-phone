@@ -17,7 +17,7 @@ onSubmit(form: NgForm) {
   if (form.valid) {
     const { fName, lName, email, religion } = form.value;
       
-      const usersCollection = collection(this.firestore, 'users');
+      const usersCollection = collection(this.firestore, 'registrations');
       interface UserData {
         fName: string;
         lName: string;

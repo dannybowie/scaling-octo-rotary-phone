@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow public submission to the registrations collection
+    // BUT enforce strict schema validation to prevent abuse
+    match /registrations/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['fName', 'lName', 'email', 'religion']) &&
+                    request.resource.data.fName is string && request.resource.data.fName.size() < 100 &&
+                    request.resource.data.lName is string && request.resource.data.lName.size() < 100 &&
+                    request.resource.data.email is string && request.resource.data.email.size() < 100 &&
+                    request.resource.data.religion is string && request.resource.data.religion.size() < 100;
+      allow read, update, delete: if false;
+    }
+  }
+}

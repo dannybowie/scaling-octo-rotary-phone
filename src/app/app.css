@@ -1,9 +1,31 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+  --dark: #2c3e50;
+  --light: #fdfbf7;
+}
+
+::ng-deep html {
+  scroll-behavior: smooth;
+}
+
+::ng-deep body {
   margin: 0;
-  font-family: var(--font-body);
+  font-family: 'Nunito', sans-serif;
   background: var(--light);
   color: var(--dark);
   line-height: 1.6;
+}
+
+::ng-deep p {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+::ng-deep .hero-text {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 header {
@@ -96,6 +118,22 @@ nav a {
 }
 
 nav a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+footer a:hover {
   text-decoration: underline;
 }
 
