@@ -29,14 +29,17 @@
 }
 
 header {
-  background: var(--dark);
-  color: white;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  color: var(--dark);
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
-  z-index: 100;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.05);
 }
 
 header h1 {
@@ -45,7 +48,7 @@ header h1 {
   font-size: 1.5rem;
   letter-spacing: 1px;
   z-index: 101;
-  color: white !important;
+  color: var(--dark) !important;
   text-decoration: none !important;
 }
 
@@ -65,7 +68,7 @@ header h1 {
 .menu-btn span {
   width: 100%;
   height: 3px;
-  background: white;
+  background: var(--dark);
   border-radius: 2px;
   transition: all 0.3s linear;
 }
@@ -110,11 +113,12 @@ nav.open {
 }
 
 nav a {
-  color: white;
+  color: var(--dark);
   text-decoration: none;
   padding: 1rem 2rem;
   font-weight: bold;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: color 0.3s ease;
 }
 
 nav a:hover {
@@ -163,5 +167,6 @@ footer a:hover {
     margin-left: 1.5rem;
     padding: 0;
     border-bottom: none;
+    font-size: 1.1rem;
   }
 }
