@@ -48,8 +48,12 @@ header h1 {
   font-size: 1.5rem;
   letter-spacing: 1px;
   z-index: 101;
-  color: var(--dark) !important;
-  text-decoration: none !important;
+  background: linear-gradient(to right, #4a148c, #7b1fa2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #4a148c;
+  text-decoration: none;
 }
 
 /* Mobile Menu Button (Hamburger) */
@@ -92,7 +96,7 @@ nav {
   right: 0;
   height: 100vh;
   width: 250px;
-  background: var(--dark);
+  background: white;
   padding-top: 5rem;
   display: flex;
   flex-direction: column;
@@ -113,7 +117,7 @@ nav.open {
 }
 
 nav a {
-  color: var(--dark);
+  color: #4a148c;
   text-decoration: none;
   padding: 1rem 2rem;
   font-weight: bold;
@@ -122,11 +126,12 @@ nav a {
 }
 
 nav a:hover {
+  color: #7b1fa2;
   text-decoration: underline;
 }
 
 footer {
-  background: var(--dark);
+  background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
   color: white;
   text-align: center;
   padding: 1rem 2rem;

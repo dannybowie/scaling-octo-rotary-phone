@@ -16,12 +16,40 @@
         <input type="email" id="email" name="email" ngModel required email placeholder="jane@example.com" />
       </div>
 
-      <div class="form-group">
+            <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" name="phone" ngModel required placeholder="(123) 456-7890" />
+      </div>
+
+            <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" ngModel required />
+      </div>
+            <div class="form-group">
         <label for="religion">Religion</label>
         <input type="text" id="religion" name="religion" ngModel required placeholder="Christianity, etc." />
       </div>
 
+            <div class="form-group">
+        <label>Do you currently attend church?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="church" ngModel value="Yes" required> Yes</label>
+          <label><input type="radio" name="church" ngModel value="No"> No</label>
+        </div>
+      </div>
+
+            <div class="form-group">
+        <label>Are you Baptized?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="baptized" ngModel value="Yes" required> Yes</label>
+          <label><input type="radio" name="baptized" ngModel value="No"> No</label>
+        </div>
+      </div>
+
       <button type="submit" [disabled]="!registerForm.form.valid" class="btn-submit">Register</button>
+      <div *ngIf="submissionSuccess" class="success-message">
+        Registration successful! We'll be in touch soon.
+      </div>
     </form>
   </div>
 </div>

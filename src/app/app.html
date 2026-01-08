@@ -12,10 +12,12 @@
 
   <!-- Navigation Menu -->
   <nav [class.open]="isMenuOpen">
-    <a routerLink="/" fragment="vision" (click)="closeMenu()">Vision</a>
-    <a routerLink="/" fragment="mission" (click)="closeMenu()">Mission</a>
+    <a routerLink="/" fragment="about" (click)="closeMenu()">Welcome</a>
+    <a routerLink="/" fragment="community" (click)="closeMenu()">Community</a>
+    <a routerLink="/" fragment="support" (click)="closeMenu()">Support</a>
+    <a routerLink="/" fragment="groups" (click)="closeMenu()">Groups</a>
     <a routerLink="/" fragment="involved" (click)="closeMenu()">Get Involved</a>
-    <a routerLink="/" fragment="about" (click)="closeMenu()">About</a>
+    
   </nav>
 </header>
 <router-outlet></router-outlet>

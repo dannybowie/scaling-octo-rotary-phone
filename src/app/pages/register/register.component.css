@@ -80,3 +80,66 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+/* Add to register.component.css */
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem; /* Spacing between 'Yes' and 'No' */
+  margin-top: 0.5rem;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Spacing between the radio button and the text */
+  cursor: pointer;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+.radio-group input[type="radio"] {
+  appearance: none; /* Remove default styling for custom sizing if needed, or keep standard */
+  -webkit-appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid #834d9b;
+  border-radius: 50%;
+  margin: 0;
+  display: grid;
+  place-content: center;
+  transition: all 0.2s ease;
+}
+
+.radio-group input[type="radio"]::before {
+  content: "";
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 0.2s transform ease-in-out;
+  box-shadow: inset 1em 1em #834d9b;
+}
+
+.radio-group input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+.radio-group input[type="radio"]:checked {
+  border-color: #834d9b;
+}
+.radio-group input[type="radio"]:focus {
+  outline: 2px solid #d04ed6;
+  outline-offset: 2px;
+}
+
+.success-message {
+  margin-top: 1rem;
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 0.8rem;
+  border-radius: 8px;
+}

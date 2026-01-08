@@ -1,15 +1,21 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow public submission to the registrations collection
-    // BUT enforce strict schema validation to prevent abuse
-    match /registrations/{id} {
-      allow create: if request.resource.data.keys().hasOnly(['fName', 'lName', 'email', 'religion']) &&
-                    request.resource.data.fName is string && request.resource.data.fName.size() < 100 &&
-                    request.resource.data.lName is string && request.resource.data.lName.size() < 100 &&
-                    request.resource.data.email is string && request.resource.data.email.size() < 100 &&
-                    request.resource.data.religion is string && request.resource.data.religion.size() < 100;
+    match /registrations/{registration} {
+      // Allow create ONLY if the data matches our strict schema
+      allow create: if request.resource.data.keys().hasOnly(['fName', 'lName', 'email', 'phone', 'dob', 'religion', 'church', 'baptized']) &&
+                    request.resource.data.fName is string && request.resource.data.fName.size() > 0 && request.resource.data.fName.size() < 50 &&
+                    request.resource.data.lName is string && request.resource.data.lName.size() > 0 && request.resource.data.lName.size() < 50 &&
+                    request.resource.data.email is string && request.resource.data.email.size() > 0 && request.resource.data.email.size() < 100 &&
+                    request.resource.data.phone is string && request.resource.data.phone.size() < 20 &&
+                    request.resource.data.dob is timestamp &&
+                    request.resource.data.religion is string && request.resource.data.religion.size() < 50 &&
+                    request.resource.data.church is string && (request.resource.data.church == 'Yes' || request.resource.data.church == 'No') &&
+                    request.resource.data.baptized is string && (request.resource.data.baptized == 'Yes' || request.resource.data.baptized == 'No');
+      
+      // Deny read/update/delete to protect user privacy
       allow read, update, delete: if false;
     }
+    
   }
 }
