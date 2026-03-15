@@ -1,0 +1,94 @@
+<div class="registration-wrapper">
+  <div class="group-info-container">
+    <div class="register-card">
+      <h1>When We Connect</h1>
+      <h2>Next Session Information:</h2>
+      <h3>Gal Pals short term groups (Max 12 Gal Pals)</h3>
+      <p>Prodigals members short term groups will meet 3 times a month from January - May. There will be two groups available
+        during this time.</p>
+      <p>Dates: January 29th- May 28th</p>
+      <p>Time: Morning 10am- 12pm & Evening 7PM - 9PM</p>
+
+      <h3>Gal Pals Long Term groups (Max 12 Gal Pals)</h3>
+      <p>Prodigals members long term groups will meet 2 times a month from September- May (Dates TBD). There will be two
+        groups available during this time</p>
+      <p>Dates: September - May</p>
+      <p>Time: TBD</p>
+
+      <h2>What to Expect:</h2>
+      <ul>
+      <li>Do Your D.U.T.Y.
+        <ul>
+          <li>Learn the keys to successfully going on your D.U.T.Y journey to internal healing</li>
+        </ul>
+      </li>
+      <li>Learn to pray childishly but effectively</li>
+      <li>Journey through New Testament -Short Term Groups</li>
+      <li>Journey through Old/New Testament- Long Term Groups</li>
+      <li>Worship with Courage Training</li>
+      <li>Welcome Home Prodigal Party</li>
+      </ul>
+
+      <h2>Additional Connections:</h2>
+      <p>Throughout the session, there will be opportunities to build deeper connections through MBK outings (Mom Before
+        Kids), It Takes a Village playdates, Singles Bonfires, volunteering opportunities, and Treasure Swaps.</p>
+
+    </div>
+  </div>
+
+  <div class="register-container">
+    <div class="register-card">
+      <h1>Register for Gal Pals Group</h1>
+      <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" class="register-form">
+        <div class="form-group">
+          <label for="fName">First Name</label>
+          <input type="text" id="fName" name="fName" ngModel required placeholder="Jane" />
+        </div>
+        <div class="form-group">
+          <label for="lName">Last Name</label>
+          <input type="text" id="lName" name="lName" ngModel required placeholder="Doe" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" ngModel required email placeholder="jane@example.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" name="phone" ngModel required placeholder="(123) 456-7890" />
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" ngModel required />
+        </div>
+        <div class="form-group">
+          <label for="religion">Religion</label>
+          <input type="text" id="religion" name="religion" ngModel required placeholder="Christianity, etc." />
+        </div>
+
+        <div class="form-group">
+          <label>Do you currently attend church?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="church" ngModel value="Yes" required> Yes</label>
+            <label><input type="radio" name="church" ngModel value="No"> No</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Are you Baptized?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="baptized" ngModel value="Yes" required> Yes</label>
+            <label><input type="radio" name="baptized" ngModel value="No"> No</label>
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="!registerForm.form.valid" class="btn-submit">Register</button>
+        <div *ngIf="submissionSuccess" class="success-message">
+          Registration successful! We'll be in touch soon.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

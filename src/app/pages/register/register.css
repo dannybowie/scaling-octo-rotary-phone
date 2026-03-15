@@ -1,0 +1,233 @@
+.group-info-container h2, .group-info-container h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.group-info-container h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem; /* give some space for the underline */
+}
+
+.group-info-container h3 {
+  font-size: 1.2rem;
+  padding-bottom: 0.25rem; /* give some space for the underline */
+}
+
+.group-info-container h2::after, .group-info-container h3::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(to right, #834d9b, #d04ed6);
+  margin-top: 0.25rem;
+  border-radius: 2px;
+}
+
+.group-info-container p {
+  margin-bottom: 0.25rem;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-left: 1rem;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem;
+  background-color: var(--light, #f9f9f9);
+}
+
+.register-card {
+  background: white;
+  padding: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+}
+
+.register-card h1 {
+  margin-bottom: 0.5rem;
+  color: var(--dark, #333);
+  font-size: 1.8rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--dark, #333);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.btn-submit {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background-color: var(--dark, #333);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Add to register.component.css */
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem; /* Spacing between 'Yes' and 'No' */
+  margin-top: 0.5rem;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Spacing between the radio button and the text */
+  cursor: pointer;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+.radio-group input[type="radio"] {
+  appearance: none; /* Remove default styling for custom sizing if needed, or keep standard */
+  -webkit-appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid #834d9b;
+  border-radius: 50%;
+  margin: 0;
+  display: grid;
+  place-content: center;
+  transition: all 0.2s ease;
+}
+
+.radio-group input[type="radio"]::before {
+  content: "";
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 0.2s transform ease-in-out;
+  box-shadow: inset 1em 1em #834d9b;
+}
+
+.radio-group input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+.radio-group input[type="radio"]:checked {
+  border-color: #834d9b;
+}
+.radio-group input[type="radio"]:focus {
+  outline: 2px solid #d04ed6;
+  outline-offset: 2px;
+}
+
+.success-message {
+  margin-top: 1rem;
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+
+/* Wrapper to handle the layout */
+.registration-wrapper {
+  display: flex;
+  flex-direction: column; /* Mobile: Stacked (Info top, Form bottom) */
+  gap: 2rem; /* Space between cards */
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f4f7f6;
+}
+
+/* Ensure containers don't force full width in flex mode if they have specific widths */
+.group-info-container,
+.register-container {
+  width: 100%;
+}
+
+
+/* Desktop Layout */
+@media (min-width: 992px) {
+  .registration-wrapper {
+    flex-direction: row; /* Desktop: Side by Side */
+    align-items: flex-start; /* Align tops of cards */
+    justify-content: center; /* Center the pair on screen */
+  }
+
+  .group-info-container,
+  .register-container {
+    flex: 1; /* Allow them to share space equally */
+    max-width: 600px; /* Optional: constrain width so they don't stretch too far */
+  }
+}
+
+.group-info-container ul {
+  list-style: none;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.group-info-container ul li::before {
+  content: "\2022";
+  color: #834d9b;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.group-info-container ul ul {
+  padding-left: 1rem;
+  margin-top: 0;
+}

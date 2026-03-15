@@ -1,3 +1,38 @@
+.group-info-container h2, .group-info-container h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.group-info-container h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem; /* give some space for the underline */
+}
+
+.group-info-container h3 {
+  font-size: 1.2rem;
+  padding-bottom: 0.25rem; /* give some space for the underline */
+}
+
+.group-info-container h2::after, .group-info-container h3::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(to right, #834d9b, #d04ed6);
+  margin-top: 0.25rem;
+  border-radius: 2px;
+}
+
+.group-info-container p {
+  margin-bottom: 0.25rem;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-left: 1rem;
+}
+
 .register-container {
   display: flex;
   justify-content: center;
@@ -9,16 +44,16 @@
 
 .register-card {
   background: white;
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 480px;
-  text-align: center;
+  max-width: 500px;
+  text-align: left;
 }
 
 .register-card h1 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   color: var(--dark, #333);
   font-size: 1.8rem;
 }
@@ -142,4 +177,57 @@
   border: 1px solid #c3e6cb;
   padding: 0.8rem;
   border-radius: 8px;
+}
+
+/* Wrapper to handle the layout */
+.registration-wrapper {
+  display: flex;
+  flex-direction: column; /* Mobile: Stacked (Info top, Form bottom) */
+  gap: 2rem; /* Space between cards */
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f4f7f6;
+}
+
+/* Ensure containers don't force full width in flex mode if they have specific widths */
+.group-info-container,
+.register-container {
+  width: 100%;
+}
+
+
+/* Desktop Layout */
+@media (min-width: 992px) {
+  .registration-wrapper {
+    flex-direction: row; /* Desktop: Side by Side */
+    align-items: flex-start; /* Align tops of cards */
+    justify-content: center; /* Center the pair on screen */
+  }
+
+  .group-info-container,
+  .register-container {
+    flex: 1; /* Allow them to share space equally */
+    max-width: 600px; /* Optional: constrain width so they don't stretch too far */
+  }
+}
+
+.group-info-container ul {
+  list-style: none;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.group-info-container ul li::before {
+  content: "\2022";
+  color: #834d9b;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.group-info-container ul ul {
+  padding-left: 1rem;
+  margin-top: 0;
 }

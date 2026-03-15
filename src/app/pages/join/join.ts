@@ -8,10 +8,10 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
   selector: 'app-register',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: './join.html',
+  styleUrls: ['./join.css']
 })
-export class RegisterComponent {
+export class Join {
   private firestore = inject(Firestore);
   submissionSuccess = false;
 
